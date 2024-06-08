@@ -1,0 +1,16 @@
+{% extends "books\base.html" %}
+
+{% block title %}
+Описание книги
+{% endblock %}
+
+{% block body %}
+    <h1>Описание книги</h1>
+    <ul>
+        <li>Заголовок: {{book.title}}</li>
+        <li>Автор: {{book.author_full_name}}</li>
+        <li>Год публикации: {{book.year_of_publishing}}</li>
+        <li>Кол-во копий: {{book.copies_printed}}</li>
+        <li>Краткое описание: {{book.short_description}}</li>
+    </ul>
+{% endblock %}

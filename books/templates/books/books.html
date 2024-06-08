@@ -1,0 +1,30 @@
+{% extends "books\base.html" %}
+
+
+{% block title %}
+Список книг
+{% endblock %}
+
+
+{% block body %}
+  {% if books %}
+    <table border="1" style="border-collapse: collapse;">
+        <th>Заголовок</th>
+        <th>Автор</th>
+        <th>Год публикации</th>
+        <th>Кол-во копий</th>
+        <th>Краткое описание</th>
+    {% for book in books %}
+        <tr>
+            <td>{{book.title}}</td>
+            <td>{{book.author_full_name}}</td>
+            <td>{{book.year_of_publishing}}</td>
+            <td>{{book.copies_printed}}</td>
+            <td>{{book.short_description}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    Нет ни одной книги.
+  {% endif %}
+{% endblock %}
