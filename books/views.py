@@ -13,7 +13,7 @@ def show_books(request: HttpRequest) -> HttpResponse:
     return render(request, "books/books.html", context=context)
 
 
-def show_book(request: HttpRequest, book_id: int):
+def show_book(request: HttpRequest, book_id: int) -> HttpResponse:
     book = get_object_or_404(Book, pk=book_id)
     context = {"book": book}
     return render(request, "books/book-description.html", context=context)
@@ -28,7 +28,8 @@ def convert_book_to_json(book: Book) -> json:
             "short_description": book.short_description,
     }
 
-def show_books_json(request: HttpRequest):
+
+def show_books_json(request: HttpRequest) -> JsonResponse:
     books = Book.objects.all()
     books = [
         convert_book_to_json(book)
@@ -37,7 +38,7 @@ def show_books_json(request: HttpRequest):
     return JsonResponse({"books": books},  json_dumps_params={'ensure_ascii': False})
 
 
-def show_book_json(request: HttpRequest, book_id: int):
+def show_book_json(request: HttpRequest, book_id: int) -> JsonResponse:
     book = Book.objects.get(pk=book_id)
     book = convert_book_to_json(book)
     return JsonResponse(book, json_dumps_params={'ensure_ascii': False})
